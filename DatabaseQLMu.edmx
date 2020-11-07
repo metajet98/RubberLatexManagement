@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLMuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChuVuon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LuotThuMua">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdChuVuon" Type="int" Nullable="false" />
+          <Property Name="IdNhaXe" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="float" Nullable="false" />
+          <Property Name="DonGia" Type="int" Nullable="false" />
+          <Property Name="ThoiGian" Type="datetime" Nullable="false" />
+          <Property Name="TongTien" Type="int" Nullable="false" />
+          <Property Name="HamLuong" Type="float" Nullable="false" />
+          <Property Name="IsMuMuoc" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NhaXe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_LuotThuMua_ChuVuon">
+          <End Role="ChuVuon" Type="Self.ChuVuon" Multiplicity="1" />
+          <End Role="LuotThuMua" Type="Self.LuotThuMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChuVuon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LuotThuMua">
+              <PropertyRef Name="IdChuVuon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LuotThuMua_NhaXe">
+          <End Role="NhaXe" Type="Self.NhaXe" Multiplicity="1" />
+          <End Role="LuotThuMua" Type="Self.LuotThuMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhaXe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LuotThuMua">
+              <PropertyRef Name="IdNhaXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLMuModelStoreContainer">
+          <EntitySet Name="ChuVuon" EntityType="Self.ChuVuon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LuotThuMua" EntityType="Self.LuotThuMua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhaXe" EntityType="Self.NhaXe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LuotThuMua_ChuVuon" Association="Self.FK_LuotThuMua_ChuVuon">
+            <End Role="ChuVuon" EntitySet="ChuVuon" />
+            <End Role="LuotThuMua" EntitySet="LuotThuMua" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LuotThuMua_NhaXe" Association="Self.FK_LuotThuMua_NhaXe">
+            <End Role="NhaXe" EntitySet="NhaXe" />
+            <End Role="LuotThuMua" EntitySet="LuotThuMua" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLMuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QLMuEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChuVuons" EntityType="QLMuModel.ChuVuon" />
+          <EntitySet Name="LuotThuMuas" EntityType="QLMuModel.LuotThuMua" />
+          <EntitySet Name="NhaXes" EntityType="QLMuModel.NhaXe" />
+          <AssociationSet Name="FK_LuotThuMua_ChuVuon" Association="QLMuModel.FK_LuotThuMua_ChuVuon">
+            <End Role="ChuVuon" EntitySet="ChuVuons" />
+            <End Role="LuotThuMua" EntitySet="LuotThuMuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LuotThuMua_NhaXe" Association="QLMuModel.FK_LuotThuMua_NhaXe">
+            <End Role="NhaXe" EntitySet="NhaXes" />
+            <End Role="LuotThuMua" EntitySet="LuotThuMuas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ChuVuon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LuotThuMuas" Relationship="QLMuModel.FK_LuotThuMua_ChuVuon" FromRole="ChuVuon" ToRole="LuotThuMua" />
+        </EntityType>
+        <EntityType Name="LuotThuMua">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdChuVuon" Type="Int32" Nullable="false" />
+          <Property Name="IdNhaXe" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Double" Nullable="false" />
+          <Property Name="DonGia" Type="Int32" Nullable="false" />
+          <Property Name="ThoiGian" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TongTien" Type="Int32" Nullable="false" />
+          <Property Name="HamLuong" Type="Double" Nullable="false" />
+          <Property Name="IsMuMuoc" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ChuVuon" Relationship="QLMuModel.FK_LuotThuMua_ChuVuon" FromRole="LuotThuMua" ToRole="ChuVuon" />
+          <NavigationProperty Name="NhaXe" Relationship="QLMuModel.FK_LuotThuMua_NhaXe" FromRole="LuotThuMua" ToRole="NhaXe" />
+        </EntityType>
+        <EntityType Name="NhaXe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LuotThuMuas" Relationship="QLMuModel.FK_LuotThuMua_NhaXe" FromRole="NhaXe" ToRole="LuotThuMua" />
+        </EntityType>
+        <Association Name="FK_LuotThuMua_ChuVuon">
+          <End Type="QLMuModel.ChuVuon" Role="ChuVuon" Multiplicity="1" />
+          <End Type="QLMuModel.LuotThuMua" Role="LuotThuMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChuVuon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LuotThuMua">
+              <PropertyRef Name="IdChuVuon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LuotThuMua_NhaXe">
+          <End Type="QLMuModel.NhaXe" Role="NhaXe" Multiplicity="1" />
+          <End Type="QLMuModel.LuotThuMua" Role="LuotThuMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhaXe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LuotThuMua">
+              <PropertyRef Name="IdNhaXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLMuModelStoreContainer" CdmEntityContainer="QLMuEntities">
+          <EntitySetMapping Name="ChuVuons">
+            <EntityTypeMapping TypeName="QLMuModel.ChuVuon">
+              <MappingFragment StoreEntitySet="ChuVuon">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LuotThuMuas">
+            <EntityTypeMapping TypeName="QLMuModel.LuotThuMua">
+              <MappingFragment StoreEntitySet="LuotThuMua">
+                <ScalarProperty Name="IsMuMuoc" ColumnName="IsMuMuoc" />
+                <ScalarProperty Name="HamLuong" ColumnName="HamLuong" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="IdNhaXe" ColumnName="IdNhaXe" />
+                <ScalarProperty Name="IdChuVuon" ColumnName="IdChuVuon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhaXes">
+            <EntityTypeMapping TypeName="QLMuModel.NhaXe">
+              <MappingFragment StoreEntitySet="NhaXe">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
