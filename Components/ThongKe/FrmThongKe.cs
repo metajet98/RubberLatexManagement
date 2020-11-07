@@ -165,7 +165,7 @@ namespace QuanLyMu.Components.ThongKe
                     Ten = item.NhaXe.Ten,
                     TongSoLuongMuNuoc = StringUtils.FormatThousand(soLuongMuNuoc),
                     DonGia = donGiaTinhBinhDo,
-                    BinhDo = String.Format("{0:N2}", binhDo),
+                    BinhDo = StringUtils.FormatThousand(binhDo),
                     TongSoTienMuNuoc = StringUtils.FormatThousand(tienMuNuoc),
                     TongSoLuongMuChen = StringUtils.FormatThousand(soLuongMuChen),
                     TongSoTienMuChen = StringUtils.FormatThousand(tienMuChen),

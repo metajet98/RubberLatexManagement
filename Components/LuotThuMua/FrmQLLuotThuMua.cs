@@ -1,4 +1,5 @@
 ﻿using QuanLyMu.Objects;
+using QuanLyMu.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -52,7 +53,7 @@ namespace QuanLyMu.Components.LuotThuMua
                     luotThuMua.SoLuong, 
                     luotThuMua.HamLuong,
                     luotThuMua.DonGia, 
-                    String.Format("{0:n0}", luotThuMua.TongTien),
+                    StringUtils.FormatThousand(luotThuMua.TongTien),
                     luotThuMua.ThoiGian.ToString("dd-MM-yyyy HH-ss"),
                     luotThuMua.IsMuMuoc ? "" : "Mủ chén")
                 ).ToList();
