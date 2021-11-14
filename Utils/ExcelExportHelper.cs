@@ -57,11 +57,11 @@ namespace QuanLyMu.Utils
                 bodyRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
                 excelWorkSheet.Cells[HEADER_ROW, 1] = "Ngày";
-                excelWorkSheet.Cells[HEADER_ROW, 2] = "Số lượng (kg)";
-                excelWorkSheet.Cells[HEADER_ROW, 3] = "Hàm lượng";
+                excelWorkSheet.Cells[HEADER_ROW, 2] = "Mủ nước";
+                excelWorkSheet.Cells[HEADER_ROW, 3] = "Độ";
                 excelWorkSheet.Cells[HEADER_ROW, 4] = "Đơn giá";
                 excelWorkSheet.Cells[HEADER_ROW, 5] = "Thành tiền";
-                excelWorkSheet.Cells[HEADER_ROW, 6] = "Số lượng (kg)";
+                excelWorkSheet.Cells[HEADER_ROW, 6] = "Mủ chén";
                 excelWorkSheet.Cells[HEADER_ROW, 7] = "Đơn giá";
                 excelWorkSheet.Cells[HEADER_ROW, 8] = "Thành tiền";
                 excelWorkSheet.Cells[HEADER_ROW, 9] = "Tổng tiền";
